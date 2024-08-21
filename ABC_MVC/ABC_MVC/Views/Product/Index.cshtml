@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ABC_MVC.Models.Product>
+
+<h2 class="text-center">Product List</h2>
+
+<!-- Centered button to create a new product -->
+<div class="d-flex justify-content-center mb-4">
+    <a href="https://localhost:7157/Product/Create" class="btn btn-primary">Create New Product</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" alt="@product.Name" class="card-img-top" />
+                    }
+                    else
+                    {
+                        <img src="/images/placeholder.png" alt="Placeholder Image" class="card-img-top" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>@product.Price.ToString("C")</strong></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Add Bootstrap CSS if it's not already included in your layout -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
